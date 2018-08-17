@@ -1,41 +1,41 @@
 dist: trusty
 language: php
-
 branches:
-  # Only test the master branch and SemVer tags.
   only:
-    - master
-    - /^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+.*$/
-
+  - master
+  - "/^[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+.*$/"
 matrix:
   fast_finish: true
   include:
-    - php: 7.2
-      env: 'DEPENCENCIES=highest'
-    - php: 7.2
-    - php: 7.1
-    - php: 7.0.11
-    - php: 5.6
-      env: 'SCENARIO=phpunit5'
-    - php: 5.6
-      env: 'SCENARIO=phpunit5 DEPENDENCIES=lowest'
-
+  - php: 7.2
+    env: DEPENCENCIES=highest
+  - php: 7.2
+  - php: 7.1
+  - php: 7.0.11
+  - php: 5.6
+    env: SCENARIO=phpunit5
+  - php: 5.6
+    env: SCENARIO=phpunit5 DEPENDENCIES=lowest
 sudo: false
-
 cache:
   directories:
-    - $HOME/.composer/cache
-
+  - "$HOME/.composer/cache"
 install:
-  - 'composer scenario "${SCENARIO}" "${DEPENDENCIES}"'
-
+- composer scenario "${SCENARIO}" "${DEPENDENCIES}"
 script:
-  - composer test
-
+- composer test
 after_success:
-  - travis_retry php vendor/bin/php-coveralls -v
-
+- travis_retry php vendor/bin/php-coveralls -v
 before_deploy:
-  - composer phar:install-tools
-  - composer install --prefer-dist --no-dev --no-interaction
-  - php box.phar build
+- composer phar:install-tools
+- composer install --prefer-dist --no-dev --no-interaction
+- php box.phar build
+deploy:
+  provider: releases
+  api_key:
+    secure: rKnkpWfuHhojwez0enP+axgCvbFIYUXEEiJ26MsRXl5zg5QFEjSqVdNdp9HbE074zspMghRbmVlXnrwjae2D9Bjx/5a3HN1Ipm8SvB3Mo8QvbWKnDi57bpICPCuw8qYpa5SCXcoWQeacROCW9R5RIDvkBkv3fA4xhrs/FEaSPkNDT/4KzxXX/V2xenSv8HjO5YzAIsNYxIMxkP4u5QBrewhzD6wbtF4yfR3ZUKSfEHJO5hvDBFwkHgDZgZxcBLxWodA7Cr2GdR3uuKaVyPGoQaQlYohgQM+jrj1EPBI62E3s19xcgBna9yoiZq0MWokHc5OnzdQ2rvbD9whTPc0v99O9r3YNtYo1HWjxi5Ygz8t+ZO1La5QnvhtBKY3kVIge4VS2UtoX53oD4xdhIgFH6uAgDSaP1U+KyglOX3Pd695PN4gNLqAhpXSF6y1YR02p80NKbDjjjbCSPqQJ01lKPQ8wyJQors6lZOjcQwHS+F09gPoo967orCQXQMDQfQ+Uw9O5LQPnusnbcYI55GwEzSw2Va4/E5/oVXnBMn91njLWUgsqNRHL4w5HLYh8bqYT3q8bticHtbZu83EcQyX5rmuVm8KQRvy49r+UvimW1KbI3OxG7PekndV7Zb53vcjQ4YhJHmGFWyasdbqxeHoc2qTB6mS9DunVbdOS+zsN0Do=
+  file: example.phar
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: greg-1-anderson/selfupdatetest
