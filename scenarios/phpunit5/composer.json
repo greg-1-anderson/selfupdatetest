@@ -24,7 +24,7 @@
         "symfony/filesystem": "^2.8|^3|^4"
     },
     "require-dev": {
-        "consolidation/Robo": "^1.2.3",
+        "consolidation/Robo": "dev-master",
         "g1a/composer-test-scenarios": "^2",
         "knplabs/github-api": "^2.7",
         "php-http/guzzle6-adapter": "^1.1",
