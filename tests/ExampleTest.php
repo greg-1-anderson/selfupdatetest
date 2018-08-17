@@ -1,6 +1,6 @@
 <?php
 
-namespace ExampleProject;
+namespace Selfupdatetest;
 
 use PHPUnit\Framework\TestCase;
 
