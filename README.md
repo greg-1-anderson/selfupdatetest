@@ -1,6 +1,6 @@
 # Selfupdatetest
 
-Put a one-line description of your project here.
+Test description.
 
 [![Travis CI](https://travis-ci.org/greg-1-anderson/selfupdatetest.svg?branch=master)](https://travis-ci.org/greg-1-anderson/selfupdatetest)
 [![Windows CI](https://ci.appveyor.com/api/projects/status/{{PUT_APPVEYOR_STATUS_BADGE_ID_HERE}}?svg=true)](https://ci.appveyor.com/project/greg-1-anderson/selfupdatetest)
